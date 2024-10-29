@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -30,7 +30,10 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+
+        $project = Project::create();
+        $data = $request->all();
     }
 
     /**
@@ -38,7 +41,7 @@ class ProjectController extends Controller
      */
     public function show(project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**

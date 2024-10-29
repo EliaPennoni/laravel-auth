@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('page-title', 'Tuuti i progetti')
+@section('page-title', 'Tutti i progetti')
 
 @section('main-content')
     <div class="row">
         <div class="col">
+            <h1>tutti i progetti</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -15,6 +16,8 @@
                         <th scope="col">Descrizione</th>
                         <th scope="col">Immagine</th>
                         <th scope="col">Data</th>
+                        <th scope="col">Vai</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -24,8 +27,17 @@
                             <td> {{ $project->title }} </td>
                             <td> {{ $project->slug }} </td>
                             <td>{{ $project->price }}</td>
+                            <td>{{ $project->description }}</td>
                             <td> {{ $project->image }} </td>
-                            <td>{{ $project->timestamps }}</td>
+                            <td>{{ $project->created_at }}</td>
+                            <td>
+                                <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
+                                    class="btn btn-success">Visualizza</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.projects.create', ['project' => $project->id]) }}"
+                                    class="btn btn-success">crea</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
