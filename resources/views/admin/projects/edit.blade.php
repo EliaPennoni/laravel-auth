@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
-@section('page-title', 'Il mio nuovo progetto')
+@section('page-title', 'modifica il progetto')
 
 @section('main-content')
     <div class="row">
         <div class="col">
-            <h1>Il mio nuovo progetto</h1>
-            <form action="{{ route('admin.projects.store') }}" method="POST">
+            <h1>modifica il progetto</h1>
+            <form action="{{ route('admin.projects.update', ['project' => $project->id]) }}" method="POST">
                 @csrf
+                @method('PUT')
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Titolo</label><span class="text-danger">*</span>

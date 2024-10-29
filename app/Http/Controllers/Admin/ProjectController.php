@@ -30,11 +30,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
 
-        $project = Project::create();
-        $data = $request->all();
+        $data = $request->validate([
+            'title' => 'required|max:64',
+            'price' => 'required',
+            'description' => 'nullable',
+            'image' => 'nullable',
+        ]);
+        $data['slug'] = str()->slug($data['title']);
+        $project = Project::create($data);
+
+
+        return redirect()->route('admin.projects.show', ['project' => $project->id]);
     }
+
 
     /**
      * Display the specified resource.
@@ -49,7 +58,7 @@ class ProjectController extends Controller
      */
     public function edit(project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -57,7 +66,19 @@ class ProjectController extends Controller
      */
     public function update(Request $request, project $project)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|max:64',
+            'price' => 'required',
+            'description' => 'nullable',
+            'image' => 'nullable',
+        ]);
+        $data['slug'] = str()->slug($data['title']);
+        $project = Project::create($data);
+
+        $project->update($data);
+
+
+        return redirect()->route('admin.projects.show', ['project' => $project->id]);
     }
 
     /**
@@ -65,6 +86,7 @@ class ProjectController extends Controller
      */
     public function destroy(project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index');
     }
 }
