@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\project;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
@@ -13,8 +11,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::get();
-        return view('admin.projects.index', compact('projects'));
+        //
     }
 
     /**
@@ -36,7 +33,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(project $project)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +41,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(project $project)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +49,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +57,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(project $project)
+    public function destroy(string $id)
     {
         //
     }

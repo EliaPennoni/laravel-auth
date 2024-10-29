@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 // Controllers
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 
 /*
@@ -24,8 +25,9 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
 
-    Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
+        Route::resource('projects', ProjectController::class);
 
-});
+    });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
